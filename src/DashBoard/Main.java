@@ -1,4 +1,4 @@
-package DashBoard;
+package Home.src.DashBoard;
 
 public class Main {
     public static void main(String[] args) {
