@@ -98,6 +98,9 @@ public class BoardExample {
             } else if (submenuchoice == 2){
                 delete(readBno);
                 break;
+            } else if(submenuchoice ==3){
+                System.out.println("게시글 목록으로 돌아갑니다.");
+                break;
             }
             else System.out.println("잘못누르셨습니다.");
         }
