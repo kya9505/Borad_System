@@ -160,7 +160,7 @@ public class BoardExample {
             Board.setBnoCnt(1);
         return boardMap;
     }
-
+//
     public void exit(){
         System.exit(0);
     }
