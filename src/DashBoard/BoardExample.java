@@ -6,17 +6,17 @@ import java.util.Scanner;
 
 public class BoardExample {
     Scanner scanner = new Scanner(System.in);
-    private final HashMap<Integer,Board> boardMap = new HashMap<>();
-    private final Map<Integer,Runnable> mainMenu = new HashMap<>();
+    private final Map<Integer,Board> boardMap = new HashMap<>();
+    private final Map<Integer,Runnable> mainMenu = new HashMap<>(); //값으로 함수형 인터페이스 runnable을 맵의 값으로 지정
 
-    public void run(){
+    public void play(){
         while (true) {
             list();
             mainMenu();
             int menuchoice = scanner.nextInt();
             scanner.nextLine();
-            Runnable action = mainMenu.get(menuchoice);
-            if (action != null) {
+            Runnable action = mainMenu.get(menuchoice); //입력한 번호를 키로 메인메뉴의 값을 가져와 action에 저장
+            if (action != null) { //값이 있으면 해당 runnable의 run메서드 실행
                 action.run();
             } else System.out.println("다시 선택해주세요.");
         }
@@ -36,7 +36,7 @@ public class BoardExample {
         System.out.println("-".repeat(50));
         System.out.println("메인메뉴 : 1.Create | 2.Read | 3.Clear | 4.Exit");
         System.out.print("메뉴선택 : ");
-        mainMenu.put(1,this::create);
+        mainMenu.put(1,this::create); // 키값 1의 값에 runnable의 run메서드에 create메서드를 호출
         mainMenu.put(2,this::read);
         mainMenu.put(3,this::clear);
         mainMenu.put(4,this::exit);
@@ -66,7 +66,7 @@ public class BoardExample {
         return submenuchoice;
     }
 
-    public HashMap<Integer,Board> create(){
+    public Map<Integer,Board> create(){
         System.out.println("[새 게시물 입력]");
         System.out.print("제목 : ");
         String bTitle = scanner.nextLine();
@@ -82,7 +82,7 @@ public class BoardExample {
         return boardMap;
     }
 
-    public HashMap<Integer,Board> read(){
+    public Map<Integer,Board> read(){
         System.out.println("[게시물 읽기]");
         int readBno = findboard();
         System.out.println(boardMap.get(readBno).toString());
@@ -107,7 +107,7 @@ public class BoardExample {
         return boardMap;
     }
 
-    public HashMap<Integer,Board> update(int readbno){
+    public Map<Integer,Board> update(int readbno){
         System.out.println("[수정 내용 입력]");
         System.out.print("제목 : ");
         String bTitle = scanner.nextLine();
@@ -123,7 +123,7 @@ public class BoardExample {
         }
         return boardMap;
     }
-    public HashMap<Integer, Board> delete(int readbno) {
+    public Map<Integer, Board> delete(int readbno) {
         if (boardMap.isEmpty()) {
             System.out.println("등록된 게시글이 없습니다.");
         } else {
@@ -155,7 +155,7 @@ public class BoardExample {
         }
         return readBno;
     }
-    public HashMap<Integer,Board> clear(){
+    public Map<Integer,Board> clear(){
         System.out.println("[게시물 전체 삭제]");
         System.out.println("-".repeat(50));
         if(submenu()==1)
@@ -163,7 +163,7 @@ public class BoardExample {
             Board.setBnoCnt(1);
         return boardMap;
     }
-//
+
     public void exit(){
         System.exit(0);
     }
